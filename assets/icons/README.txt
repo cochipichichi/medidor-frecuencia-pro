@@ -1,0 +1,1 @@
+Agrega aquí tus íconos (192x192, 512x512).
