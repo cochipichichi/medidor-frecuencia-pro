@@ -1,6 +1,6 @@
 {
-  "name": "Medidor de Frecuencia v4 3D Pro",
-  "short_name": "Frecuencia 3D Pro",
+  "name": "Medidor de Frecuencia v4 3D Pro Solid",
+  "short_name": "Frecuencia 3D Solid",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f172a",

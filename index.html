@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Medidor de Frecuencia v4 3D Pro | Neotech</title>
+  <title>Medidor de Frecuencia v4 3D Pro Solid | Neotech</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
   <meta name="theme-color" content="#0f172a" />
 </head>
 <body class="theme-dark">
   <header class="topbar">
-    <div class="logo">🎛️ Frecuencia v4 3D Pro</div>
+    <div class="logo">🎛️ Frecuencia v4 3D Pro Solid</div>
     <nav class="controls">
       <button id="btn-home" title="Inicio">🏠</button>
       <button id="btn-voz" title="Leer frecuencia">🗣️</button>
@@ -26,7 +26,7 @@
   <main class="container">
     <section class="panel">
       <h1 data-i18n="title">📡 Medidor de frecuencia de sonido</h1>
-      <p data-i18n="subtitle">Versión con espectro 2D + espectro 3D en tiempo real con colores e interacción.</p>
+      <p data-i18n="subtitle">Versión con espectro 2D + espectro 3D sólido con colores e interacción.</p>
       <div class="btn-row">
         <button id="btn-start" class="primary" data-i18n="start">🎙️ Iniciar medición</button>
         <button id="btn-stop" class="secondary" disabled data-i18n="stop">⏹️ Detener</button>
@@ -58,9 +58,13 @@
     </section>
 
     <section class="graph-card" id="card-3d">
-      <h2>🧊 Espectro 3D en tiempo real (con colores)</h2>
+      <h2>🧊 Espectro 3D en tiempo real (sólido)</h2>
       <div id="scene3d" style="width:100%; height:340px;"></div>
-      <p class="hint">💡 Puedes rotar, hacer zoom y desplazar el gráfico 3D.</p>
+      <div class="legend">
+        <span class="swatch swatch-1"></span> Bajo
+        <span class="swatch swatch-2"></span> Medio
+        <span class="swatch swatch-3"></span> Alto
+      </div>
     </section>
 
     <section class="history-card" id="history-card">
@@ -77,18 +81,6 @@
         <tbody id="history-body"></tbody>
       </table>
     </section>
-
-    <section class="base-links">
-      <h3>📦 Vistas base</h3>
-      <div class="btn-grid">
-        <button>👁️ 3D</button>
-        <button>📱 AR</button>
-        <button>🥽 VR</button>
-        <button>✅ Registro CSV</button>
-        <button>🧪 Quiz</button>
-        <button>🎟️ Ticket</button>
-      </div>
-    </section>
   </main>
 
   <div class="search-overlay" id="search-overlay">
@@ -99,10 +91,9 @@
   </div>
 
   <footer class="footer">
-    <p>Neotech EduLab · Medición de audio en navegador · v4 3D Pro</p>
+    <p>Neotech EduLab · Medición de audio en navegador · v4 3D Pro Solid</p>
   </footer>
 
-  <!-- three.js + orbitcontrols CDN -->
   <script src="https://unpkg.com/three@0.161.0/build/three.min.js"></script>
   <script src="https://unpkg.com/three@0.161.0/examples/js/controls/OrbitControls.js"></script>
   <script src="app.js"></script>

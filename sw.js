@@ -1,4 +1,4 @@
-const CACHE_NAME = "frecuencia-v4-3d-pro";
+const CACHE_NAME = "frecuencia-v4-3d-pro-solid";
 const ASSETS = ["./", "./index.html", "./style.css", "./app.js", "./manifest.json"];
 
 self.addEventListener("install", (e) => {
