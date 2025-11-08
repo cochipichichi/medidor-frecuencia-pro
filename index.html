@@ -3,48 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Medidor de Frecuencia v5 Lab (fix 3D)</title>
-  <link rel="manifest" href="manifest.json" />
+  <title>Medidor de Frecuencia v5 Offline 3D</title>
   <link rel="stylesheet" href="style.css" />
-  <meta name="theme-color" content="#0f172a" />
 </head>
 <body class="theme-dark">
   <header class="topbar">
-    <div class="logo">🎛️ Frecuencia v5 Lab</div>
+    <div class="logo">🎛️ Frecuencia v5 Offline 3D</div>
     <nav class="controls">
       <button id="btn-home" title="Inicio">🏠</button>
-      <button id="btn-voz" title="Leer frecuencia">🗣️</button>
       <button id="btn-theme" title="Tema claro/oscuro">🌓</button>
-      <button id="btn-plus" title="Aumentar texto">A+</button>
-      <button id="btn-minus" title="Disminuir texto">A−</button>
-      <button id="btn-lang" title="Cambiar idioma">🌐</button>
-      <button id="btn-focus" title="Modo atención">🧠</button>
-      <button id="btn-search" title="Buscar">🔍</button>
     </nav>
   </header>
 
   <main class="container">
     <section class="panel">
-      <h1 data-i18n="title">📡 Medidor de frecuencia – edición laboratorio</h1>
-      <p data-i18n="subtitle">Selector de micrófono, pausa de análisis, 3D interactivo, perfil de dispositivo y registro de sesiones.</p>
+      <h1>📡 Medidor de frecuencia – sin dependencias</h1>
+      <p>Esta versión no usa Three.js. El “3D” se dibuja en un canvas 2D con perspectiva para que funcione offline.</p>
       <div class="btn-row">
-        <button id="btn-start" class="primary" data-i18n="start">🎙️ Iniciar medición</button>
-        <button id="btn-stop" class="secondary" disabled data-i18n="stop">⏹️ Detener</button>
+        <button id="btn-start" class="primary">🎙️ Iniciar medición</button>
+        <button id="btn-stop" class="secondary" disabled>⏹️ Detener</button>
         <button id="btn-freeze" class="secondary" disabled>🧊 Congelar máx.</button>
-        <button id="btn-pause" class="secondary" disabled>⏸️ Pausar análisis</button>
         <button id="btn-export" class="csv" disabled>📤 Exportar CSV</button>
-        <button id="btn-mode" class="secondary">👨‍🏫 Modo docente</button>
-        <button id="btn-toggle-3d" class="secondary">🧱 3D ON/OFF</button>
-      </div>
-
-      <div class="device-row">
-        <label for="inputDevice">🎤 Fuente de audio:</label>
-        <select id="inputDevice"></select>
-        <small id="device-hint">Si no ves todos los micrófonos, presiona “Iniciar” primero para otorgar permisos.</small>
       </div>
     </section>
 
-    <section class="freq-wrapper" id="lab-panel">
+    <section class="freq-wrapper">
       <div class="freq-display current">
         <span>Frecuencia actual:</span>
         <div id="freq-value">-- Hz</div>
@@ -53,78 +36,24 @@
         <span>Frecuencia máxima (congelada):</span>
         <div id="freq-max">-- Hz</div>
       </div>
-      <div class="freq-display current">
-        <span>Muestras:</span>
-        <div id="freq-samples">0</div>
-      </div>
-    </section>
-
-    <section class="panel profile-panel" id="profile-panel">
-      <h2>🖥️ Perfil del dispositivo</h2>
-      <p><strong>FPS 3D:</strong> <span id="stat-fps">--</span></p>
-      <p><strong>Historial 3D:</strong> <span id="stat-history">--</span></p>
-      <p><strong>Bins espectro:</strong> <span id="stat-bins">--</span></p>
-      <p><strong>Sesiones guardadas:</strong> <span id="stat-sessions">--</span></p>
     </section>
 
     <section class="graph-card">
-      <h2>📈 Espectro de frecuencias (2D)</h2>
-      <canvas id="freqCanvas" width="900" height="240"></canvas>
+      <h2>📈 Espectro 2D</h2>
+      <canvas id="freqCanvas" width="900" height="200"></canvas>
     </section>
 
-    <section class="graph-card" id="card-3d">
-      <h2>🧊 Espectro 3D en tiempo real (con fallback)</h2>
-      <div id="scene3d" style="width:100%; height:340px; background:#020617; display:flex; align-items:center; justify-content:center;">
-        <span id="scene3d-fallback" style="opacity:.5;font-size:.7rem;">Cargando 3D…</span>
-      </div>
-      <div class="legend">
-        <span class="swatch swatch-1"></span> Bajo
-        <span class="swatch swatch-2"></span> Medio
-        <span class="swatch swatch-3"></span> Alto
-      </div>
-
-      <!-- Cargar desde CDN (requiere internet) -->
-      <script src="https://unpkg.com/three@0.161.0/build/three.min.js"></script>
-      <script src="https://unpkg.com/three@0.161.0/examples/js/controls/OrbitControls.js"></script>
-    </section>
-
-    <section class="history-card" id="history-card">
-      <h2>🕒 Historial reciente</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>ms</th>
-            <th>Hz</th>
-            <th>Hz máx.</th>
-          </tr>
-        </thead>
-        <tbody id="history-body"></tbody>
-      </table>
-    </section>
-
-    <section class="panel" id="sessions-panel">
-      <h2>🗃️ Sesiones guardadas</h2>
-      <ul id="sessions-list"></ul>
+    <section class="graph-card">
+      <h2>🧊 Espectro “3D” offline</h2>
+      <canvas id="freqCanvas3d" width="900" height="260"></canvas>
+      <p class="hint">Es una vista de “historial en perspectiva” para no depender de librerías externas.</p>
     </section>
   </main>
 
-  <div class="search-overlay" id="search-overlay">
-    <div class="search-box">
-      <input type="text" id="search-input" placeholder="Buscar en la página..." />
-      <button id="search-close">Cerrar</button>
-    </div>
-  </div>
-
   <footer class="footer">
-    <p>Neotech EduLab · Medición de audio en navegador · v5 Lab</p>
+    <p>Neotech EduLab · v5 Offline 3D</p>
   </footer>
 
   <script src="app.js"></script>
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js").catch(console.error);
-    }
-  </script>
 </body>
 </html>
