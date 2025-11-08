@@ -1,4 +1,4 @@
-const CACHE_NAME = "frecuencia-v5-lab";
+const CACHE_NAME = "frecuencia-v5-lab-fix";
 const ASSETS = ["./", "./index.html", "./style.css", "./app.js", "./manifest.json"];
 
 self.addEventListener("install", (e) => {

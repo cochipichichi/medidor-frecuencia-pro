@@ -1,6 +1,6 @@
 {
-  "name": "Medidor de Frecuencia v5 Lab",
-  "short_name": "Frecuencia v5",
+  "name": "Medidor de Frecuencia v5 Lab (fix 3D)",
+  "short_name": "Frecuencia v5 fix",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f172a",

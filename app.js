@@ -93,7 +93,21 @@ deviceSelect.addEventListener("change", async () => {
 });
 
 // ======== init 3D ========
+
 function init3D() {
+  const container = document.getElementById("scene3d");
+  const fallback = document.getElementById("scene3d-fallback");
+  if (!container) return;
+  if (!window.THREE) {
+    if (fallback) {
+      fallback.textContent = "No se pudo cargar Three.js (¿sin internet?).";
+    }
+    return;
+  }
+  if (fallback) fallback.remove();
+  // ORIGINAL_INIT3D
+}
+
   const container = document.getElementById("scene3d");
   if (!container || !window.THREE) return;
 

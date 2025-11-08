@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Medidor de Frecuencia v5 Lab | Neotech</title>
+  <title>Medidor de Frecuencia v5 Lab (fix 3D)</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
   <meta name="theme-color" content="#0f172a" />
@@ -73,15 +73,19 @@
     </section>
 
     <section class="graph-card" id="card-3d">
-      <h2>🧊 Espectro 3D en tiempo real (con ejes)</h2>
-      <div id="scene-wrapper">
-        <div id="scene3d"></div>
-        <div id="axis-labels">
-          <span class="axis axis-x">Tiempo →</span>
-          <span class="axis axis-z">← Frecuencia</span>
-        </div>
+      <h2>🧊 Espectro 3D en tiempo real (con fallback)</h2>
+      <div id="scene3d" style="width:100%; height:340px; background:#020617; display:flex; align-items:center; justify-content:center;">
+        <span id="scene3d-fallback" style="opacity:.5;font-size:.7rem;">Cargando 3D…</span>
       </div>
-      <p class="hint">💡 Rotar con mouse, rueda para zoom. Pausa el análisis para explicar el cuadro.</p>
+      <div class="legend">
+        <span class="swatch swatch-1"></span> Bajo
+        <span class="swatch swatch-2"></span> Medio
+        <span class="swatch swatch-3"></span> Alto
+      </div>
+
+      <!-- Cargar desde CDN (requiere internet) -->
+      <script src="https://unpkg.com/three@0.161.0/build/three.min.js"></script>
+      <script src="https://unpkg.com/three@0.161.0/examples/js/controls/OrbitControls.js"></script>
     </section>
 
     <section class="history-card" id="history-card">
@@ -116,8 +120,6 @@
     <p>Neotech EduLab · Medición de audio en navegador · v5 Lab</p>
   </footer>
 
-  <script src="https://unpkg.com/three@0.161.0/build/three.min.js"></script>
-  <script src="https://unpkg.com/three@0.161.0/examples/js/controls/OrbitControls.js"></script>
   <script src="app.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
